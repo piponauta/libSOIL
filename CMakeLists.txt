@@ -19,16 +19,16 @@ set(LIBSOIL_HEADERS
 )
 
 if(BUILD_LIBSOIL_STATIC)
-    set(LIBSOIL_TYPE SHARED)
-else()
     set(LIBSOIL_TYPE STATIC)
+else()
+    set(LIBSOIL_TYPE SHARED)
 endif()
 
 add_library(SOIL ${LIBSOIL_TYPE}
     ${LIBSOIL_SOURCES}
     ${LIBSOIL_HEADERS}
 )
-target_include_directories(SOIL PRIVATE OpenGL::GL)
+target_link_libraries(SOIL PRIVATE OpenGL::GL)
 if(NOT APPLE)
     target_include_directories(SOIL PRIVATE OpenGL::GLX)
 endif()
